@@ -1,0 +1,35 @@
+1578878383322	Delete elements
+1578878393709	Delete element
+1578878410008	Delete element
+1578878450058	Delete elements
+1578878988042	Delete element
+1578878991053	Delete element
+1578878993877	Delete element
+1578878995607	Delete element
+1578878996950	Delete element
+1578878998498	Delete element
+1578878999700	Delete element
+1578879001326	Delete element
+1578879006749	Delete element
+1578879011233	Delete elements
+1578879025079	Delete elements
+1578879028934	Delete elements
+1578879030893	Delete element
+1578879035849	Delete elements
+1578879042506	Delete elements
+1578879050260	Delete element
+1578879051733	Delete element
+1578879052957	Delete element
+1578879057942	Delete element
+1578879059732	Delete element
+1578879388630	Rename type 'Add_Inventory_No_Serial_Request'
+1578879400143	Rename type 'Add_Product_Request'
+1578879410697	Rename type 'Edit_Inventory_Request'
+1578879423330	Rename type 'Edit_Product_Request'
+1578879435159	Rename type 'Remove_Inventory_Request'
+1578879443500	Rename type 'Remove_Product_Request'
+1578879455632	Rename type 'Search_Inventory_Request'
+1578879464531	Rename type 'Search_Products_Request'
+1578879518884	Rename local variable 'productObj'
+1578888083273	Move compilation units
+1578888085674	Delete element

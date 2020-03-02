@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;server_to_db_controllers.All_Time_Frames_Request&apos; to &apos;Email_All_Time_Frames_Request&apos;&#x0D;&#x0A;- Original project: &apos;Elantech_Inventory_Server_Side&apos;&#x0D;&#x0A;- Original element: &apos;server_to_db_controllers.All_Time_Frames_Request&apos;&#x0D;&#x0A;- Renamed element: &apos;server_to_db_controllers.Email_All_Time_Frames_Request&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;All_Time_Frames_Request&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;server_to_db_controllers{All_Time_Frames_Request.java[All_Time_Frames_Request" matchStrategy="1" name="Email_All_Time_Frames_Request" qualified="false" references="true" similarDeclarations="false" stamp="1579479138912" textual="false" version="1.0"/>
+</session>

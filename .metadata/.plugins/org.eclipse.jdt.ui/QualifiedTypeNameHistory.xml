@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="event_objects.Search_All_Time_Frame_Event_Object"/>
+<fullyQualifiedTypeName name="event_objects.Search_COD_Event_Object"/>
+<fullyQualifiedTypeName name="server_to_db_controllers.Search_COD_Request"/>
+<fullyQualifiedTypeName name="event_objects.Search_All_TimeFrame_Event_Object"/>
+<fullyQualifiedTypeName name="javax.mail.Message"/>
+<fullyQualifiedTypeName name="javax.mail.MessagingException"/>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+<fullyQualifiedTypeName name="javax.mail.Transport"/>
+<fullyQualifiedTypeName name="javax.mail.Session"/>
+<fullyQualifiedTypeName name="javax.mail.PasswordAuthentication"/>
+<fullyQualifiedTypeName name="event_objects.Search_Store_Billing_Event_Object"/>
+<fullyQualifiedTypeName name="event_objects.Email_One_TimeFrame_Event_Object"/>
+</qualifiedTypeNameHistroy>
