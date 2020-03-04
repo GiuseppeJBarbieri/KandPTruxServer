@@ -23,7 +23,7 @@ public class Remove_TimeFrame_Request {
 		
 		try {
 			PreparedStatement prepStatement = dbConnection.getConnection()
-					.prepareStatement("DELETE FROM timeframe_information WHERE Order_ID= ?");
+					.prepareStatement("DELETE FROM timeframe_information WHERE order_id= ?");
 
 			prepStatement.setString(1, item.getOrderID());
 			prepStatement.executeUpdate();

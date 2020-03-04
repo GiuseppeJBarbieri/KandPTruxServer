@@ -20,7 +20,7 @@ public class Edit_Store_Request {
 
 		try {
 			PreparedStatement prepStatement = dbConnection.getConnection().prepareStatement(
-					"UPDATE store_information SET store_name=?, address=?, email=?, phone_number=?, fax_number=? WHERE store_id = ?");
+					"UPDATE store_information SET Store_Name=?, Address=?, Email=?, Phone_Number=?, Fax_Number=? WHERE Store_ID = ?");
 			
 			prepStatement.setString(1, obj.getStoreName());
 			prepStatement.setString(2, obj.getAddress());

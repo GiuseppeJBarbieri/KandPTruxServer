@@ -27,7 +27,7 @@ public class Search_TimeFrame_Request {
 			Statement statement = dbConnection.getConnection().createStatement();
 
 			ResultSet resultSet = statement
-					.executeQuery("SELECT * FROM timeframe_information WHERE store_id = '" + searchObject.getStoreID() + "' ");
+					.executeQuery("SELECT * FROM timeframe_information WHERE Store_ID = '" + searchObject.getStoreID() + "' ");
 
 			while (resultSet.next()) {
 				timeFrameResultsList.add(new TimeFrame_Model(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5),

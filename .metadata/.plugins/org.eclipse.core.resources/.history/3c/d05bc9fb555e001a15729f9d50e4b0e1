@@ -21,7 +21,7 @@ public class Add_TimeFrame_Request {
 			Data_Base_Connectivity_Controller dbConnection = new Data_Base_Connectivity_Controller();
 			dbConnection.connectToDataBase();
 			PreparedStatement statement = dbConnection.getConnection().prepareStatement(
-					"insert into timeframe_information (customer_name, town, phone_number, driver, timeframe_start, timeframe_end, order_date, store_id, cod)"
+					"insert into timeframe_information (Customer_Name, Town, Phone_Number, Driver, TimeFrame_Start, TimeFrame_End, Order_Date, Store_ID, cod)"
 							+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 			statement.setString(1, ev.getCustomerName());

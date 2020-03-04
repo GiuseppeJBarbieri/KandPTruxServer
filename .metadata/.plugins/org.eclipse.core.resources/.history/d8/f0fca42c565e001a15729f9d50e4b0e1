@@ -24,9 +24,9 @@ public class Search_Store_Request {
 
 		try {
 			Statement statement = dbConnection.getConnection().createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM store_information WHERE lower(store_name) LIKE '%" + searchObject.getStoreName()
-							+ "%' OR lower(email) LIKE '%" + searchObject.getStoreName() + "%' OR lower(phone_number) LIKE '%"
-							+ searchObject.getStoreName() + "%' OR lower(fax_number) LIKE '%" + searchObject.getStoreName() + "%'");
+			ResultSet resultSet = statement.executeQuery("SELECT * FROM store_information WHERE lower(Store_Name) LIKE '%" + searchObject.getStoreName()
+							+ "%' OR lower(Email) LIKE '%" + searchObject.getStoreName() + "%' OR lower(Phone_Number) LIKE '%"
+							+ searchObject.getStoreName() + "%' OR lower(Fax_Number) LIKE '%" + searchObject.getStoreName() + "%'");
 			
 			while (resultSet.next()) {
 				storeResultsList.add(new Store_Model(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6),resultSet.getString(1)));

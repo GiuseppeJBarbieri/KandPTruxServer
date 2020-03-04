@@ -22,7 +22,7 @@ public class Add_Store_Request {
 			Data_Base_Connectivity_Controller dbConnection = new Data_Base_Connectivity_Controller();
 			dbConnection.connectToDataBase();
 			PreparedStatement statement = dbConnection.getConnection().prepareStatement(
-					"insert into store_information (store_name, address, email, phone_number, fax_number)"
+					"insert into store_information (Store_Name, Address, Email, Phone_Number, Fax_Number)"
 							+ " values (?, ?, ?, ?, ?)");
 
 			statement.setString(1, storeObj.getStoreName());

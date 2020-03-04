@@ -21,7 +21,7 @@ public class Remove_Store_Request {
 		
 		try {
 			PreparedStatement prepStatement = dbConnection.getConnection()
-					.prepareStatement("DELETE FROM store_information WHERE store_id= ?");
+					.prepareStatement("DELETE FROM store_information WHERE Store_ID= ?");
 
 			prepStatement.setString(1, product.getStoreID());
 			prepStatement.executeUpdate();
