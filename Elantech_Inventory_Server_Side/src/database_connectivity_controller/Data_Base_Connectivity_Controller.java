@@ -12,7 +12,7 @@ public class Data_Base_Connectivity_Controller {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/kandptrux?useSSL=false",
-					"root", "");
+					"root", "admin");
 			setConnection(connection);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

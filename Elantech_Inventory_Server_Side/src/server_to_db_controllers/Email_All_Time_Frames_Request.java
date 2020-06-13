@@ -127,20 +127,84 @@ public class Email_All_Time_Frames_Request {
 
 			// Set Subject
 			message.setSubject("Timeframes For " + LocalDate.now().toString());
-			String messageString = "Hello " + store_Model.getStoreName() + ",\n"
-					+ "Customer Name \t\t\t Town \t\t\t Phone Number \t\t\t Driver \t\t\t TimeFrame \t\t\t Order Date\n";
+			String messageString = "";
 
 			for (int i = 0; i < emailList.size(); i++) {
 				//System.out.println("HERE");
-				String s = emailList.get(i).getName() + " \t\t\t" + emailList.get(i).getTown() + " \t\t\t "
-						+ emailList.get(i).getPhoneNumber() + " \t\t\t " + emailList.get(i).getDriver() + " \t\t\t "
-						+ emailList.get(i).getTimeFrameStart() + " - " + emailList.get(i).getTimeFrameEnd() + " \t\t\t "
-						+ emailList.get(i).getOrderDate() + " \n ";
+				String s = "Customer Name:\t" + emailList.get(i).getName() +
+						"\nTown:\t" + emailList.get(i).getTown() +
+						"\nPhone Number:\t" + emailList.get(i).getPhoneNumber() +
+						"\nDriver:\t"  + emailList.get(i).getDriver() +
+						"\nTimeFrame:\t" + emailList.get(i).getTimeFrameStart() + " - " + emailList.get(i).getTimeFrameEnd() +
+						"\nOrder Date:\t" + emailList.get(i).getOrderDate() + "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+				
+			
 				//System.out.println(s);
 				messageString += s;
 			}
 			// Put the content of your message
 			message.setText(messageString);
+
+			// Send message
+			Transport.send(message);
+
+			//System.out.println("Sent message successfully....");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+			
+		}
+	}
+	
+	private void testEmailList() {
+
+		// Add recipient
+		String to = "giuseppejbarbieri@gmail.com";
+
+		// Add sender
+		String from = "kandptruxtimeframes@gmail.com";
+		final String username = "kandptruxtimeframes@gmail.com";// your Gmail username
+		final String password = "Dravenmeng47";// your Gmail password
+
+		String host = "smtp.gmail.com";
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.port", "587");
+
+		// Get the Session object
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+
+		try {
+			// Create a default MimeMessage object
+			Message message = new MimeMessage(session);
+
+			message.setFrom(new InternetAddress(from));
+
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+
+			// Set Subject
+			message.setSubject("Timeframes For " + LocalDate.now().toString());
+//			String messageString = "Hello " + store_Model.getStoreName() + ",\n"
+//					+ "Customer Name \t\t\t Town \t\t\t Phone Number \t\t\t Driver \t\t\t TimeFrame \t\t\t Order Date\n";
+//
+//			for (int i = 0; i < emailList.size(); i++) {
+//				//System.out.println("HERE");
+//				String s = emailList.get(i).getName() + " \t\t\t" + emailList.get(i).getTown() + " \t\t\t "
+//						+ emailList.get(i).getPhoneNumber() + " \t\t\t " + emailList.get(i).getDriver() + " \t\t\t "
+//						+ emailList.get(i).getTimeFrameStart() + " - " + emailList.get(i).getTimeFrameEnd() + " \t\t\t "
+//						+ emailList.get(i).getOrderDate() + " \n ";
+//				//System.out.println(s);
+//				messageString += s;
+//			}
+//			// Put the content of your message
+			message.setText("TEST");
 
 			// Send message
 			Transport.send(message);

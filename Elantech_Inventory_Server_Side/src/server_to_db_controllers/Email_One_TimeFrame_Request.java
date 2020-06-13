@@ -130,15 +130,15 @@ public class Email_One_TimeFrame_Request {
 
 			// Set Subject
 			message.setSubject("Timeframes For " + LocalDate.now().toString());
-			String messageString = "Hello " + store_Model.getStoreName() + ",\n"
-					+ "Customer Name \t\t\t Town \t\t\t Phone Number \t\t\t Driver \t\t\t TimeFrame \t\t\t Order Date\n";
-
+			String messageString = "";
 			for (int i = 0; i < emailList.size(); i++) {
 				//System.out.println("HERE");
-				String s = emailList.get(i).getName() + " \t\t\t" + emailList.get(i).getTown() + " \t\t\t "
-						+ emailList.get(i).getPhoneNumber() + " \t\t\t " + emailList.get(i).getDriver() + " \t\t\t "
-						+ emailList.get(i).getTimeFrameStart() + " - " + emailList.get(i).getTimeFrameEnd() + " \t\t\t "
-						+ emailList.get(i).getOrderDate() + " \n ";
+				String s = "Customer Name:\t" + emailList.get(i).getName() +
+						"\nTown:\t" + emailList.get(i).getTown() +
+						"\nPhone Number:\t" + emailList.get(i).getPhoneNumber() +
+						"\nDriver:\t"  + emailList.get(i).getDriver() +
+						"\nTimeFrame:\t" + emailList.get(i).getTimeFrameStart() + " - " + emailList.get(i).getTimeFrameEnd() +
+						"\nOrder Date:\t" + emailList.get(i).getOrderDate() + "\n~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 				//System.out.println(s);
 				messageString += s;
 			}
