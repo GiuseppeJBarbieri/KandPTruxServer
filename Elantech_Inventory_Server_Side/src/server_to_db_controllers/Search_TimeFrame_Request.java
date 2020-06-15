@@ -33,7 +33,7 @@ public class Search_TimeFrame_Request {
 				timeFrameResultsList.add(new TimeFrame_Model(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5),
 						resultSet.getString(6), resultSet.getString(7), resultSet.getString(8), resultSet.getString(9), resultSet.getDouble(10)));
 			}
-			System.out.println(timeFrameResultsList.size());
+			
 			statement.close();
 			resultSet.close();
 			dbConnection.closeConnection();

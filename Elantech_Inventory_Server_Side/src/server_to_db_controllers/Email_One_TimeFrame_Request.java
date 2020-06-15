@@ -27,18 +27,17 @@ import models.Server_To_Client_Message_Model;
 public class Email_One_TimeFrame_Request {
 	private ArrayList<TimeFrame_Model> timeFrameResultsList;
 	private ArrayList<Store_Model> storeResultsList;
+
 	public Email_One_TimeFrame_Request(ObjectOutputStream output, Object object,
 			Server_Data_Controller server_Data_Controller) {
 
 		Email_One_TimeFrame_Event_Object obj = (Email_One_TimeFrame_Event_Object) object;
 		timeFrameResultsList = new ArrayList<>();
 		storeResultsList = new ArrayList<>();
-		
+
 		Data_Base_Connectivity_Controller dbConnection = new Data_Base_Connectivity_Controller();
 		dbConnection.connectToDataBase();
-		
-		
-		
+
 		try {
 			Statement statement = dbConnection.getConnection().createStatement();
 
@@ -54,8 +53,8 @@ public class Email_One_TimeFrame_Request {
 			resultSet.close();
 
 			Statement statement2 = dbConnection.getConnection().createStatement();
-			ResultSet resultSet2 = statement2.executeQuery("SELECT * FROM store_information where Store_ID LIKE '%" + obj.getStoreID()
-					+ "%'");
+			ResultSet resultSet2 = statement2
+					.executeQuery("SELECT * FROM store_information where Store_ID LIKE '%" + obj.getStoreID() + "%'");
 
 			while (resultSet2.next()) {
 				storeResultsList
@@ -72,30 +71,33 @@ public class Email_One_TimeFrame_Request {
 				ArrayList<TimeFrame_Model> emailList = new ArrayList<>();
 
 				for (int j = 0; j < timeFrameResultsList.size(); j++) {
-					if (today.toString().equals(timeFrameResultsList.get(j).getOrderDate())
-							&& storeResultsList.get(i).getStoreID().equalsIgnoreCase(timeFrameResultsList.get(j).getStore_ID())) {
+					if (today.toString().equals(timeFrameResultsList.get(j).getOrderDate()) && storeResultsList.get(i)
+							.getStoreID().equalsIgnoreCase(timeFrameResultsList.get(j).getStore_ID())) {
 						emailList.add(timeFrameResultsList.get(j));
 					}
 
 				}
-
-				emailList(emailList, storeResultsList.get(i), server_Data_Controller, output);
+				if (emailList.size() > 0) {
+					emailList(emailList, storeResultsList.get(i), server_Data_Controller, output);
+				}
 			}
-
+			sendFinalEmail();
 			One_Email_Sent_Model object2 = new One_Email_Sent_Model(new Server_To_Client_Message_Model(0,
 					"Email's Sent!", "Email's were successfully Sent!", "Click ok to continue.."));
 			server_Data_Controller.writeObjectToClient(output, object2);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			One_Email_Sent_Model object2 = new One_Email_Sent_Model(new Server_To_Client_Message_Model(0,
-					"ERROR!", "An error has occurred, Email's didn't send!", "Click ok to continue.."));
+			One_Email_Sent_Model object2 = new One_Email_Sent_Model(new Server_To_Client_Message_Model(0, "ERROR!",
+					"An error has occurred, Email's didn't send!", "Click ok to continue.."));
 			server_Data_Controller.writeObjectToClient(output, object2);
 		}
-	
-	
+
 	}
 
-	private void emailList(ArrayList<TimeFrame_Model> emailList, Store_Model store_Model, Server_Data_Controller server_Data_Controller, ObjectOutputStream output) {
+	
+
+	private void emailList(ArrayList<TimeFrame_Model> emailList, Store_Model store_Model,
+			Server_Data_Controller server_Data_Controller, ObjectOutputStream output) {
 
 		// Add recipient
 		String to = store_Model.getEmail();
@@ -132,14 +134,13 @@ public class Email_One_TimeFrame_Request {
 			message.setSubject("Timeframes For " + LocalDate.now().toString());
 			String messageString = "";
 			for (int i = 0; i < emailList.size(); i++) {
-				//System.out.println("HERE");
-				String s = "Customer Name:\t" + emailList.get(i).getName() +
-						"\nTown:\t" + emailList.get(i).getTown() +
-						"\nPhone Number:\t" + emailList.get(i).getPhoneNumber() +
-						"\nDriver:\t"  + emailList.get(i).getDriver() +
-						"\nTimeFrame:\t" + emailList.get(i).getTimeFrameStart() + " - " + emailList.get(i).getTimeFrameEnd() +
-						"\nOrder Date:\t" + emailList.get(i).getOrderDate() + "\n~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-				//System.out.println(s);
+				// System.out.println("HERE");
+				String s = "Customer Name:\t" + emailList.get(i).getName() + "\nTown:\t" + emailList.get(i).getTown()
+						+ "\nPhone Number:\t" + emailList.get(i).getPhoneNumber() + "\nDriver:\t"
+						+ emailList.get(i).getDriver() + "\nTimeFrame:\t" + emailList.get(i).getTimeFrameStart() + " - "
+						+ emailList.get(i).getTimeFrameEnd() + "\nOrder Date:\t" + emailList.get(i).getOrderDate()
+						+ "\n~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+				// System.out.println(s);
 				messageString += s;
 			}
 			// Put the content of your message
@@ -150,7 +151,54 @@ public class Email_One_TimeFrame_Request {
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
-			
+
 		}
+	}
+	
+	private void sendFinalEmail() {
+		String to = "kandptrux@optonline.net";
+
+		// Add sender
+		String from = "kandptruxtimeframes@gmail.com";
+		final String username = "kandptruxtimeframes@gmail.com";// your Gmail username
+		final String password = "Dravenmeng47";// your Gmail password
+
+		String host = "smtp.gmail.com";
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.port", "587");
+		// Get the Session object
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+
+		try {
+			// Create a default MimeMessage object
+			Message message = new MimeMessage(session);
+
+			message.setFrom(new InternetAddress(from));
+
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+
+			// Set Subject
+			message.setSubject("Timeframes Confirmation For " + LocalDate.now().toString());
+			String messageString = "Email Successfully Sent...";
+
+			// Put the content of your message
+			message.setText(messageString);
+
+			// Send message
+			Transport.send(message);
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+
+		}
+
 	}
 }
