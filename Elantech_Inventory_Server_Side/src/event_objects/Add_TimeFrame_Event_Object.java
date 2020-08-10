@@ -1,63 +1,61 @@
 package event_objects;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Add_TimeFrame_Event_Object implements Serializable {
 
 	private static final long serialVersionUID = 4629079775686561015L;
-	private String storeId;
+	private int storeId;
 	private String customerName;
-	private String orderDate;
+	private Date orderDate;
 	private String town;
 	private String driver;
-	private String phoneNumber;
-	private String timeFrameStart;
-	private String timeFrameEnd;
-	private Double cod;
-	public Add_TimeFrame_Event_Object(String storeId, String customerName, String orderDate, String town, String driver,
-			String phoneNumber, String timeFrameStart, String timeFrameEnd, Double cod) {
+	private String orderNumber;
+	private String timeFrame;
+
+	public Add_TimeFrame_Event_Object(int storeId, String customerName, Date orderDate, String town, String driver,
+			String orderNumber, String timeFrame) {
 		super();
 		this.storeId = storeId;
 		this.customerName = customerName;
 		this.orderDate = orderDate;
 		this.town = town;
 		this.driver = driver;
-		this.phoneNumber = phoneNumber;
-		this.timeFrameStart = timeFrameStart;
-		this.timeFrameEnd = timeFrameEnd;
-		this.cod = cod;
+		this.orderNumber = orderNumber;
+		this.timeFrame = timeFrame;
 	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public String getStoreId() {
+
+	public int getStoreId() {
 		return storeId;
 	}
+
 	public String getCustomerName() {
 		return customerName;
 	}
-	public String getOrderDate() {
+
+	public Date getOrderDate() {
 		return orderDate;
 	}
+
 	public String getTown() {
 		return town;
 	}
+
 	public String getDriver() {
 		return driver;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+
+	public String getOrderNumber() {
+		return orderNumber;
 	}
-	public String getTimeFrameStart() {
-		return timeFrameStart;
+
+	public String getTimeFrame() {
+		return timeFrame;
 	}
-	public String getTimeFrameEnd() {
-		return timeFrameEnd;
-	}
-	public Double getCod() {
-		return cod;
-	}
-	
-	
-	
+
 }

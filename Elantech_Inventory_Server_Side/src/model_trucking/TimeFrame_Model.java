@@ -1,68 +1,71 @@
 package model_trucking;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class TimeFrame_Model implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5601902369161562450L;
-	private String orderID;
-	private String name;
+
+	private int storeID;
+	private int orderID;
+	private String customerName;
 	private String town;
-	private String phoneNumber;
+	private String orderNumber;
 	private String driver;
-	private String timeFrameStart;
-	private String timeFrameEnd;
-	private String orderDate;
-	private String Store_ID;
-	private Double cod;
-	public TimeFrame_Model(String orderID, String name, String town, String phoneNumber, String driver,
-			String timeFrameStart, String timeFrameEnd, String orderDate, String store_ID, Double cod) {
+	private String timeFrame;
+	private Date orderDate;
+
+	public TimeFrame_Model(int storeID, int orderID, String customerName, String town, String orderNumber,
+			String driver, String timeFrame, Date orderDate) {
 		super();
+		this.storeID = storeID;
 		this.orderID = orderID;
-		this.name = name;
+		this.customerName = customerName;
 		this.town = town;
-		this.phoneNumber = phoneNumber;
+		this.orderNumber = orderNumber;
 		this.driver = driver;
-		this.timeFrameStart = timeFrameStart;
-		this.timeFrameEnd = timeFrameEnd;
+		this.timeFrame = timeFrame;
 		this.orderDate = orderDate;
-		Store_ID = store_ID;
-		this.cod = cod;
 	}
-	public String getOrderID() {
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public int getStoreID() {
+		return storeID;
+	}
+
+	public int getOrderID() {
 		return orderID;
 	}
-	public String getName() {
-		return name;
+
+	public String getCustomerName() {
+		return customerName;
 	}
+
 	public String getTown() {
 		return town;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+
+	public String getOrderNumber() {
+		return orderNumber;
 	}
+
 	public String getDriver() {
 		return driver;
 	}
-	public String getTimeFrameStart() {
-		return timeFrameStart;
+
+	public String getTimeFrame() {
+		return timeFrame;
 	}
-	public String getTimeFrameEnd() {
-		return timeFrameEnd;
-	}
-	public String getOrderDate() {
+
+	public Date getOrderDate() {
 		return orderDate;
 	}
-	public String getStore_ID() {
-		return Store_ID;
-	}
-	public Double getCod() {
-		return cod;
-	}
-	
-	
-	
+
 }

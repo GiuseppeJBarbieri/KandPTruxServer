@@ -22,16 +22,29 @@ public class Add_Store_Request {
 			Data_Base_Connectivity_Controller dbConnection = new Data_Base_Connectivity_Controller();
 			dbConnection.connectToDataBase();
 			PreparedStatement statement = dbConnection.getConnection().prepareStatement(
-					"insert into store_information (store_name, address, email, phone_number, fax_number)"
-							+ " values (?, ?, ?, ?, ?)");
+					"insert into store_information (store_name)"
+							+ " values (?)", Statement.RETURN_GENERATED_KEYS);
 
 			statement.setString(1, storeObj.getStoreName());
-			statement.setString(2, storeObj.getAddress());
-			statement.setString(3, storeObj.getEmail());
-			statement.setString(4, storeObj.getPhoneNumber());
-			statement.setString(5, storeObj.getFax());
 			statement.execute();
+			
+			ResultSet rs = statement.getGeneratedKeys();
+			int generatedID = 0;
+			if(rs.next()) {
+				generatedID = rs.getInt(1);
+			}
+			
+			// GET ID THEN ADD EMAIL ADDRESSES
+			for(int i = 0; i < storeObj.getEmailList().size(); i++) {
+				PreparedStatement statement2 = dbConnection.getConnection().prepareStatement(
+						"insert into store_contact_information (store_id, email_address)"
+								+ " values (?, ?)");
 
+				statement2.setInt(1, generatedID);
+				statement2.setString(2, storeObj.getEmailList().get(i));
+				statement2.execute();
+				statement2.close();
+			}
 			dbConnection.closeConnection();
 			Add_Store_Request_Model object2 = new Add_Store_Request_Model (new Server_To_Client_Message_Model(0,
 					"Store Added!", "Store was successfully added to the database!", "Click ok to continue.."));

@@ -6,9 +6,9 @@ public class Remove_TimeFrame_Event_Object implements Serializable {
 
 	private static final long serialVersionUID = 6925213949320742522L;
 	
-	private String orderID;
+	private int orderID;
 
-	public Remove_TimeFrame_Event_Object(String orderID) {
+	public Remove_TimeFrame_Event_Object(int orderID) {
 		super();
 		this.orderID = orderID;
 	}
@@ -17,7 +17,7 @@ public class Remove_TimeFrame_Event_Object implements Serializable {
 		return serialVersionUID;
 	}
 
-	public String getOrderID() {
+	public int getOrderID() {
 		return orderID;
 	}
 

@@ -1,23 +1,22 @@
 package event_objects;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Edit_TimeFrame_Event_Object implements Serializable {
 
 	private static final long serialVersionUID = 304193258042188232L;
 
-	private String storeID;
-	private String orderID;
+	private int storeID;
+	private int orderID;
 	private String customerName;
-	private String orderDate;
+	private Date orderDate;
 	private String town;
 	private String driver;
-	private String phoneNumber;
-	private String timeFrameStart;
-	private String timeFrameEnd;
-	private Double cod;
-	public Edit_TimeFrame_Event_Object(String storeID, String orderID, String customerName, String orderDate,
-			String town, String driver, String phoneNumber, String timeFrameStart, String timeFrameEnd, Double cod) {
+	private String orderNumber;
+	private String timeFrame;
+	public Edit_TimeFrame_Event_Object(int storeID, int orderID, String customerName, Date orderDate, String town,
+			String driver, String orderNumber, String timeFrame) {
 		super();
 		this.storeID = storeID;
 		this.orderID = orderID;
@@ -25,24 +24,22 @@ public class Edit_TimeFrame_Event_Object implements Serializable {
 		this.orderDate = orderDate;
 		this.town = town;
 		this.driver = driver;
-		this.phoneNumber = phoneNumber;
-		this.timeFrameStart = timeFrameStart;
-		this.timeFrameEnd = timeFrameEnd;
-		this.cod = cod;
+		this.orderNumber = orderNumber;
+		this.timeFrame = timeFrame;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public String getStoreID() {
+	public int getStoreID() {
 		return storeID;
 	}
-	public String getOrderID() {
+	public int getOrderID() {
 		return orderID;
 	}
 	public String getCustomerName() {
 		return customerName;
 	}
-	public String getOrderDate() {
+	public Date getOrderDate() {
 		return orderDate;
 	}
 	public String getTown() {
@@ -51,18 +48,12 @@ public class Edit_TimeFrame_Event_Object implements Serializable {
 	public String getDriver() {
 		return driver;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getOrderNumber() {
+		return orderNumber;
 	}
-	public String getTimeFrameStart() {
-		return timeFrameStart;
+	public String getTimeFrame() {
+		return timeFrame;
 	}
-	public String getTimeFrameEnd() {
-		return timeFrameEnd;
-	}
-	public Double getCod() {
-		return cod;
-	}
-	
+
 	
 }

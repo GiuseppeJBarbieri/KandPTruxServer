@@ -27,11 +27,11 @@ public class Search_TimeFrame_Request {
 			Statement statement = dbConnection.getConnection().createStatement();
 
 			ResultSet resultSet = statement
-					.executeQuery("SELECT * FROM timeframe_information WHERE store_id = '" + searchObject.getStoreID() + "' ");
+					.executeQuery("SELECT * FROM timeframe_information WHERE store_id = '" + searchObject.getStoreID() + "' AND order_date = '" + searchObject.getDate() + "'");
 
 			while (resultSet.next()) {
-				timeFrameResultsList.add(new TimeFrame_Model(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5),
-						resultSet.getString(6), resultSet.getString(7), resultSet.getString(8), resultSet.getString(9), resultSet.getDouble(10)));
+				timeFrameResultsList.add(new TimeFrame_Model(resultSet.getInt(2), resultSet.getInt(1), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5),
+						resultSet.getString(6), resultSet.getString(7), resultSet.getDate(8)));
 			}
 			
 			statement.close();

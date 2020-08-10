@@ -5,9 +5,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import models.User_Account_Information;
-import models.User_Model;
-
 public class UserThread extends Thread {
 
 	private Socket socket;
@@ -18,15 +15,12 @@ public class UserThread extends Thread {
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 
-	private User_Model userModel;
-	private User_Account_Information userAccountInformation;
 	private Object object;
 	private Server_Data_Controller serverDataController;
 	
 	public UserThread(Socket socket, Server_Data_Controller serverDataController, Server_Thread server) {
 		this.socket = socket;
 		this.server = server;
-		userModel = new User_Model(socket.getLocalAddress().toString());
 		this.serverDataController = serverDataController;
 	}
 
@@ -60,14 +54,6 @@ public class UserThread extends Thread {
 	
 	public boolean isActive() {
 		return Thread.interrupted();
-	}
-
-	public void setUserAccountInformation(User_Account_Information userAccountInformation) {
-		userModel.setUserAccountInformation(userAccountInformation);
-	}
-
-	public User_Account_Information getUserAccountInformation() {
-		return userAccountInformation;
 	}
 
 	/*

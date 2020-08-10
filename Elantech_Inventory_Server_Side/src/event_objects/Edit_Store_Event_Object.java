@@ -1,48 +1,36 @@
 package event_objects;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Edit_Store_Event_Object implements Serializable {
 
 	private static final long serialVersionUID = 4935997342886029469L;
-	private String id;
+	private int id;
 	private String storeName;
-	private String address;
-	private String email;
-	private String phoneNum;
-	private String fax;
-	
-	public Edit_Store_Event_Object(String id, String storeName, String address, String email, String phoneNum,
-			String fax) {
+	private ArrayList<String> emailList;
+
+	public Edit_Store_Event_Object(int id, String storeName, ArrayList<String> emailList) {
 		super();
 		this.id = id;
 		this.storeName = storeName;
-		this.address = address;
-		this.email = email;
-		this.phoneNum = phoneNum;
-		this.fax = fax;
+		this.emailList = emailList;
 	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public String getId() {
+
+	public int getId() {
 		return id;
 	}
+
 	public String getStoreName() {
 		return storeName;
 	}
-	public String getAddress() {
-		return address;
+
+	public ArrayList<String> getEmailList() {
+		return emailList;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public String getPhoneNum() {
-		return phoneNum;
-	}
-	public String getFax() {
-		return fax;
-	}
-	
-	
+
 }

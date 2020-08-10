@@ -5,7 +5,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import event_objects.Logout_All_Users_Event_Object;
 import main_view.Server_View_Controller;
 
 public class Server_Thread implements Runnable {
@@ -37,43 +36,14 @@ public class Server_Thread implements Runnable {
 			viewController.appendToTextField("Server Started");
 			while (runServer) {
 				socket = serverSocket.accept();
-				//viewController.appendToTextField("New User Connected ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + "\nSocket Info~~~~ \nIP Addy: " + socket.getInetAddress() + "\nLocal Addy: "
-					//	+ socket.getLocalAddress());
-
-				if (userThreads.size() > 0) {
-					for (int i = 0; i < userThreads.size(); i++) {
-						//viewController.appendToTextField("UserThread Active?: " + userThreads.get(i).isActive() + "\nSocket Connected?: " + userThreads.get(i).getSocket().isConnected());
-					}
-				}
-
 				UserThread newUser = new UserThread(socket, serverDataController, this);
 				newUser.start();
 				userThreads.add(newUser);
-				updateServerViewList();
-				//viewController.appendToTextField("Number Of Active Threads: " + Thread.activeCount());
-				//viewController.appendToTextField("Users in list: " + userThreads.size());
-				//viewController.appendToTextField("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
 			}
 			serverSocket.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-	}
-
-	/*
-	 * User opens client Send Login Request Method If login = allowed save user
-	 * account information update user thread update server view
-	 */
-
-	public void broadcast(Object obj) {
-		// for (int i = 0; i < userThreads.size(); i++) {
-		// userThreads.get(i).sendMessage(obj);
-		// }
-	}
-
-	public void broadCastLogout() {
-		for (int i = 0; i < userThreads.size(); i++) {
-			userThreads.get(i).sendMessage(new Logout_All_Users_Event_Object(this));
 		}
 	}
 
@@ -87,14 +57,6 @@ public class Server_Thread implements Runnable {
 				userThreads.remove(i);
 			}
 		}
-		
-		viewController.updateUserAccountList(userThreads);
-		// TODO
-		/* Remove User from front end */
-	}
-
-	public void updateServerViewList() {
-		viewController.updateUserAccountList(userThreads);
 	}
 
 	public void appendToTextArea(String s) {

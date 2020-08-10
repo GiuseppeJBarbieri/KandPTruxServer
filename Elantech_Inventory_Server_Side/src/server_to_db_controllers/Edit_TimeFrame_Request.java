@@ -21,18 +21,15 @@ public class Edit_TimeFrame_Request {
 
 		try {
 			PreparedStatement prepStatement = dbConnection.getConnection().prepareStatement(
-					"UPDATE timeframe_information SET customer_name=?, town=?, phone_number=?, driver=?, timeframe_start=?, timeframe_end=?, order_date=?, store_id=?, cod=? WHERE order_id = ?");
+					"UPDATE timeframe_information SET customer_name=?, town=?, order_number=?, driver=?, timeframe=?, order_date=? WHERE order_id = ?");
 
 			prepStatement.setString(1, obj.getCustomerName());
 			prepStatement.setString(2, obj.getTown());
-			prepStatement.setString(3, obj.getPhoneNumber());
+			prepStatement.setString(3, obj.getOrderNumber());
 			prepStatement.setString(4, obj.getDriver());
-			prepStatement.setString(5, obj.getTimeFrameStart());
-			prepStatement.setString(6, obj.getTimeFrameEnd());
-			prepStatement.setString(7, obj.getOrderDate());
-			prepStatement.setString(8, obj.getStoreID());
-			prepStatement.setDouble(9, obj.getCod());
-			prepStatement.setString(10, obj.getOrderID());
+			prepStatement.setString(5, obj.getTimeFrame());
+			prepStatement.setDate(6, obj.getOrderDate());
+			prepStatement.setInt(7, obj.getOrderID());
 			prepStatement.executeUpdate();
 			prepStatement.close();
 			
